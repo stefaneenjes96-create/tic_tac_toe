@@ -45,7 +45,7 @@ function GameController(
     playerOneName = "Player one",
     playerTwoName = "Player two"
 ) {
-    const board = GameBoard();
+    let board = GameBoard();
 
     const players = [
         {
@@ -83,7 +83,6 @@ function GameController(
         }
 
         checkForWin();
-        checkForTie();
         switchPlayerTurn();
         printNewRound();
     }
@@ -148,17 +147,30 @@ function GameController(
 
         if (horizontalWinCondition("O") | verticalWinCondition("o") | diagonalWinCondition("O")) {
             console.log("Player One has won!")
+            clearPlayingBoard()
         } else if (horizontalWinCondition("X") | verticalWinCondition("x") | diagonalWinCondition("X")) {
             console.log("Player Two has won!")
-        } else {
+            clearPlayingBoard()
+        } else if (checkForTie()) {
+            console.log("You Tied!")
+            clearPlayingBoard()
+        } 
+        else {
             console.log("no winner yet.")
         };
     };
 
+    const clearPlayingBoard = () => {
+        board = GameBoard()
+    }
+
     return {
         playRound,
         checkForWin,
+        clearPlayingBoard,
     }
+
+
 }
 
 const game = GameController();
