@@ -79,11 +79,24 @@ function GameController(
         } else {
             console.log(chosenCell)
             console.log("Please choose a different cell.")
+            return
         }
 
         checkForWin();
+        checkForTie();
         switchPlayerTurn();
         printNewRound();
+    }
+
+    const checkForTie = () => {
+        let result = board.getBoard().concat();
+        for (let i = 0; i < result.length; i++) {
+            result[i] = result[i].filter((cell) => cell.getValue() === " ")
+        }
+
+        if (result[0].length === 0 && result[1].length === 0 && result[2].length === 0) {
+            console.log("You tied!")
+        }
     }
 
     const checkForWin = () => {
@@ -108,7 +121,6 @@ function GameController(
 
         const diagonalWinCondition = (token) => {
             const gameboard = board.getBoard();
-            console.log(`${gameboard[0][0].getValue()} and ${gameboard[1][1].getValue()} and ${gameboard[2][2].getValue()}`);
             return (gameboard[0][0].getValue() === token && gameboard[1][1].getValue() === token && gameboard[2][2].getValue() === token) | 
                 (gameboard[0][2].getValue() === token && gameboard[1][1].getValue() === token && gameboard[2][0].getValue() === token)
             
@@ -132,9 +144,7 @@ function GameController(
             });
 
             return win;
-    }
-
-        console.log(diagonalWinCondition("O"))
+        }   
 
         if (horizontalWinCondition("O") | verticalWinCondition("o") | diagonalWinCondition("O")) {
             console.log("Player One has won!")
