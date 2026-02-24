@@ -171,4 +171,31 @@ function GameController(
     };
 }
 
+function gui() {
+
+    const board = GameBoard()
+    const game = GameController();
+
+    const Buttons = () => {
+        const buttons = Array.from(document.querySelectorAll(".cell"));
+
+        for (const button of buttons) {
+            button.addEventListener("click", function() {
+                console.log(this)
+                addTokenToCell(this.classList[this.classList.length - 1])
+            });
+        }
+    }
+
+    const addTokenToCell = (id) => {
+        const placement = id.split(",")
+        console.log(placement)
+        game.playRound(placement[0], placement[1])
+
+    }
+
+    return {Buttons};
+}
+
 const game = GameController();
+const buttons = gui();
