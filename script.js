@@ -83,8 +83,8 @@ function GameController(
         }
 
         checkForWin();
-        switchPlayerTurn();
         printNewRound();
+        switchPlayerTurn();
     };
 
     const checkForTie = () => {
@@ -168,6 +168,7 @@ function GameController(
         playRound,
         checkForWin,
         clearPlayingBoard,
+        getActivePlayer
     };
 }
 
@@ -181,7 +182,9 @@ function gui() {
 
         for (const button of buttons) {
             button.addEventListener("click", function() {
-                console.log(this)
+                const token = document.createElement("p")
+                token.textContent = game.getActivePlayer().token;
+                button.append(token);
                 addTokenToCell(this.classList[this.classList.length - 1])
             });
         }
@@ -189,9 +192,7 @@ function gui() {
 
     const addTokenToCell = (id) => {
         const placement = id.split(",")
-        console.log(placement)
         game.playRound(placement[0], placement[1])
-
     }
 
     return {Buttons};
@@ -199,3 +200,4 @@ function gui() {
 
 const game = GameController();
 const buttons = gui();
+buttons.Buttons();
