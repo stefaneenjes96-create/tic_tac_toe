@@ -47,6 +47,9 @@ function GameController(
 ) {
     let board = GameBoard();
 
+    const gui = Gui();
+    gui.Buttons();
+
     const players = [
         {
             name: playerOneName,
@@ -162,6 +165,7 @@ function GameController(
 
     const clearPlayingBoard = () => {
         board = GameBoard();
+        gui.clearBoard()
     }
 
     return {
@@ -172,10 +176,9 @@ function GameController(
     };
 }
 
-function gui() {
+function Gui() {
 
     const board = GameBoard()
-    const game = GameController();
 
     const Buttons = () => {
         const buttons = Array.from(document.querySelectorAll(".cell"));
@@ -195,9 +198,18 @@ function gui() {
         game.playRound(placement[0], placement[1])
     }
 
-    return {Buttons};
+    const clearBoard = () => {
+        const cells = Array.from(document.querySelectorAll(".cell"));
+
+        for (const cell of cells) {
+            cell.innerHTML = "";
+        }
+    }
+
+    return {
+        Buttons,
+        clearBoard
+    };
 }
 
 const game = GameController();
-const buttons = gui();
-buttons.Buttons();
