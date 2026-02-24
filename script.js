@@ -2,13 +2,13 @@ function GameBoard() {
 
     const rows = 3;
     const colums = 3;
-    let board = []
+    let board = [];
 
     for (let i = 0; i < rows; i++) {
-        board[i] = []
+        board[i] = [];
         for (let j = 0; j < colums; j++) {
             const newCell = Cell();
-            board[i].push(newCell)
+            board[i].push(newCell);
         }
     }
 
@@ -17,7 +17,7 @@ function GameBoard() {
     const printBoard = () => {
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
         console.log(boardWithCellValues);
-    }
+    };
 
     return {
         getBoard,
@@ -62,14 +62,14 @@ function GameController(
 
     const switchPlayerTurn = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
-    }
+    };
 
     const getActivePlayer = () => activePlayer;
 
     const printNewRound = () => {
         board.printBoard();
         console.log(`${getActivePlayer().name}'s turn`);
-    }
+    };
 
     const playRound = (row, column) => {
         const chosenCell = board.getBoard()[row][column];
@@ -77,26 +77,26 @@ function GameController(
         if (chosenCell.getValue() === " ") {
             chosenCell.addToken(getActivePlayer().token);
         } else {
-            console.log(chosenCell)
-            console.log("Please choose a different cell.")
-            return
+            console.log(chosenCell);
+            console.log("Please choose a different cell.");
+            return;
         }
 
         checkForWin();
         switchPlayerTurn();
         printNewRound();
-    }
+    };
 
     const checkForTie = () => {
         let result = board.getBoard().concat();
         for (let i = 0; i < result.length; i++) {
-            result[i] = result[i].filter((cell) => cell.getValue() === " ")
+            result[i] = result[i].filter((cell) => cell.getValue() === " ");
         }
 
         if (result[0].length === 0 && result[1].length === 0 && result[2].length === 0) {
-            console.log("You tied!")
+            console.log("You tied!");
         }
-    }
+    };
 
     const checkForWin = () => {
         let colums = [
@@ -146,31 +146,29 @@ function GameController(
         }   
 
         if (horizontalWinCondition("O") | verticalWinCondition("o") | diagonalWinCondition("O")) {
-            console.log("Player One has won!")
-            clearPlayingBoard()
+            console.log("Player One has won!");
+            clearPlayingBoard();
         } else if (horizontalWinCondition("X") | verticalWinCondition("x") | diagonalWinCondition("X")) {
-            console.log("Player Two has won!")
-            clearPlayingBoard()
+            console.log("Player Two has won!");
+            clearPlayingBoard();
         } else if (checkForTie()) {
-            console.log("You Tied!")
-            clearPlayingBoard()
+            console.log("You Tied!");
+            clearPlayingBoard();
         } 
         else {
-            console.log("no winner yet.")
+            console.log("no winner yet.");
         };
     };
 
     const clearPlayingBoard = () => {
-        board = GameBoard()
+        board = GameBoard();
     }
 
     return {
         playRound,
         checkForWin,
         clearPlayingBoard,
-    }
-
-
+    };
 }
 
 const game = GameController();
