@@ -209,7 +209,7 @@ function Gui() {
         }
 
         const par = document.createElement("p");
-        par.textContent = "Player: " + game.getActivePlayer().token;
+        par.textContent = `Player ${game.getActivePlayer().token}'s turn`;
 
         div.append(par);
 
