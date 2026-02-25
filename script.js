@@ -65,6 +65,7 @@ function GameController(
 
     const switchPlayerTurn = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
+        gui.printPlayerTurn();
     };
 
     const getActivePlayer = () => activePlayer;
@@ -178,8 +179,6 @@ function GameController(
 
 function Gui() {
 
-    const board = GameBoard()
-
     const Buttons = () => {
         const cells = Array.from(document.querySelectorAll(".cell"));
 
@@ -203,6 +202,19 @@ function Gui() {
         game.playRound(placement[0], placement[1]);
     };
 
+    const printPlayerTurn = () => {
+        const div = document.querySelector(".player-turn");
+        if (div.hasChildNodes()) {
+            div.innerHTML = "";
+        }
+
+        const par = document.createElement("p");
+        par.textContent = "Player: " + game.getActivePlayer().token;
+
+        div.append(par);
+
+    }
+
     const clearScreen = () => {
         const cells = Array.from(document.querySelectorAll(".cell"));
 
@@ -222,12 +234,13 @@ function Gui() {
         par.textContent = message;
 
         div.append(par);
-    }
+    };
 
     
 
     return {
         Buttons,
+        printPlayerTurn,
         clearScreen,
         printResult
     };

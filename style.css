@@ -51,6 +51,14 @@ body {
     align-items: center;
 }
 
+.cell:hover {
+    outline: 1px solid rgb(182, 182, 160);
+}
+
+.player-turn {
+    height: 3rem;
+}
+
 .game-result {
     height: 3rem;
 }
