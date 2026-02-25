@@ -53,11 +53,15 @@ function GameController(
     const players = [
         {
             name: playerOneName,
-            token: "O"
+            token: "O",
+            divClass: ".player-one-score",
+            score: 0
         },
         {
             name: playerTwoName,
-            token: "X"
+            token: "X",
+            divClass: ".player-two-score",
+            score: 0
         }
     ];
 
@@ -71,6 +75,7 @@ function GameController(
     const getActivePlayer = () => activePlayer;
 
     const printNewRound = () => {
+        gui.printScore(players);
         board.printBoard();
         console.log(`${getActivePlayer().name}'s turn`);
     };
@@ -150,9 +155,11 @@ function GameController(
         }   
 
         if (horizontalWinCondition("O") | verticalWinCondition("o") | diagonalWinCondition("O")) {
+            players[0].score++
             console.log("Player One has won!");
             gui.printResult("Player One has won!")
         } else if (horizontalWinCondition("X") | verticalWinCondition("x") | diagonalWinCondition("X")) {
+            players[1].score++
             console.log("Player Two has won!");
             gui.printResult("Player Two has won!")
         } else if (checkForTie()) {
@@ -236,11 +243,21 @@ function Gui() {
         div.append(par);
     };
 
+    const printScore = (players) => {
+        const playerOne = document.querySelector(".player-one-score");
+        console.log(players[1].score)
+        playerOne.textContent = `Score: ${players[0].score}`;
+
+        const playerTwo = document.querySelector(".player-two-score");
+        playerTwo.textContent = `Score: ${players[1].score}`;
+    }
+
     
 
     return {
         Buttons,
         printPlayerTurn,
+        printScore,
         clearScreen,
         printResult
     };

@@ -28,9 +28,18 @@ body {
 
     justify-content: center;
     align-items: center;
+
+    width: 100vw;
 }
 
 .gameboard {
+    display: flex;
+    justify-content: space-around;
+
+    width: 80vw;
+}
+
+.play-area {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
