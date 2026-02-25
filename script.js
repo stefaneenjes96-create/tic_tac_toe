@@ -150,10 +150,13 @@ function GameController(
 
         if (horizontalWinCondition("O") | verticalWinCondition("o") | diagonalWinCondition("O")) {
             console.log("Player One has won!");
+            gui.printResult("Player One has won!")
         } else if (horizontalWinCondition("X") | verticalWinCondition("x") | diagonalWinCondition("X")) {
             console.log("Player Two has won!");
+            gui.printResult("Player Two has won!")
         } else if (checkForTie()) {
             console.log("You Tied!");
+            gui.printResult("You Tied!");
         } 
         else {
             console.log("no winner yet.");
@@ -162,7 +165,7 @@ function GameController(
 
     const clearPlayingBoard = () => {
         board = GameBoard();
-        gui.clearCells()
+        gui.clearScreen()
     }
 
     return {
@@ -200,19 +203,33 @@ function Gui() {
         game.playRound(placement[0], placement[1]);
     };
 
-    const clearCells = () => {
+    const clearScreen = () => {
         const cells = Array.from(document.querySelectorAll(".cell"));
 
         for (const cell of cells) {
             cell.innerHTML = "";
         };
+
+        const resultDiv = document.querySelector(".game-result");
+        if (resultDiv.hasChildNodes) {
+            resultDiv.innerHTML = "";
+        }
     };
+
+    const printResult = (message) => {
+        const div = document.querySelector(".game-result")
+        const par = document.createElement("p");
+        par.textContent = message;
+
+        div.append(par);
+    }
 
     
 
     return {
         Buttons,
-        clearCells
+        clearScreen,
+        printResult
     };
 }
 

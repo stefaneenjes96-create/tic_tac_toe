@@ -51,6 +51,10 @@ body {
     align-items: center;
 }
 
+.game-result {
+    height: 3rem;
+}
+
 .footer {
     display: grid;
 
