@@ -1,3 +1,11 @@
+/*
+ff9f1c
+ffbf69
+ffffff
+cbf3f0
+2ec4b6
+*/
+
 * {
     padding: 0;
     margin: 0;
@@ -21,6 +29,12 @@ body {
 
     justify-content: center;
     align-items: center;
+
+    font-size: 2rem;
+
+    border-bottom: 1px solid black;
+
+    background-image: linear-gradient(240deg, #2ec4b6, #cbf3f0);
 }
 
 .main {
@@ -39,6 +53,14 @@ body {
     width: 80vw;
 }
 
+.player-one-score, 
+.player-two-score {
+    align-self: center;
+
+    font-size: 2rem;
+    font-weight: 600;
+}
+
 .play-area {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -52,7 +74,7 @@ body {
 .cell {
     height: 10rem;
     width: 10rem;
-    background-color: beige;
+    background-color: #ffbf69;
     font-size: 10rem;
 
     display: flex;
@@ -66,10 +88,34 @@ body {
 
 .player-turn {
     height: 3rem;
+
+    display: flex;
+    justify-content: center;
+
+    font-size: 2rem;
 }
 
 .game-result {
     height: 3rem;
+
+    display: flex;
+    justify-content: center;
+
+    font-size: 2rem;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.options button {
+    padding: 0.8rem 1.5rem;
+
+    font-size: 2rem;
+
+    border-radius: 1rem;
 }
 
 .footer {
@@ -77,4 +123,6 @@ body {
 
     justify-content: center;
     align-items: center;
+
+    background-image: linear-gradient(120deg, #2ec4b6, #cbf3f0);
 }

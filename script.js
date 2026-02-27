@@ -200,7 +200,7 @@ function Gui() {
             });
         };
 
-        const newGameButton = document.querySelector(".new-game");
+        const newGameButton = document.querySelector(".new-round");
         newGameButton.addEventListener("click", () => game.clearPlayingBoard());
     };
 
