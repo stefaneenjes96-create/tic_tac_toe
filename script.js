@@ -176,10 +176,20 @@ function GameController(
         gui.clearScreen()
     }
 
+    const resetScore = () => {
+        players.forEach((player) => {
+            player.score = 0
+        });
+
+        clearPlayingBoard();
+        printNewRound();
+    }
+
     return {
         playRound,
         checkForWin,
         clearPlayingBoard,
+        resetScore,
         getActivePlayer
     };
 }
@@ -202,6 +212,9 @@ function Gui() {
 
         const newGameButton = document.querySelector(".new-round");
         newGameButton.addEventListener("click", () => game.clearPlayingBoard());
+
+        const resetScoreButton = document.querySelector(".reset-game");
+        resetScoreButton.addEventListener("click", () => game.resetScore());
     };
 
     const addTokenToCell = (id) => {
@@ -245,14 +258,11 @@ function Gui() {
 
     const printScore = (players) => {
         const playerOne = document.querySelector(".player-one-score");
-        console.log(players[1].score)
         playerOne.textContent = `Score: ${players[0].score}`;
 
         const playerTwo = document.querySelector(".player-two-score");
         playerTwo.textContent = `Score: ${players[1].score}`;
-    }
-
-    
+    }    
 
     return {
         Buttons,
