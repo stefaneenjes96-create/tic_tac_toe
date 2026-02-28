@@ -103,27 +103,28 @@ function GameController(
         }
 
         if (result[0].length === 0 && result[1].length === 0 && result[2].length === 0) {
-            console.log("You tied!");
+            return true;
         }
     };
 
     const checkForWin = () => {
         let colums = [
             {
-                x: 0,
-                o: 0
+                X: 0,
+                O: 0
             },
             {
-                x: 0,
-                o: 0
+                X: 0,
+                O: 0
             },
             {
-                x: 0,
-                o: 0
+                X: 0,
+                O: 0
             }
         ];
 
         const verticalWinCondition = (token) => {
+            console.log(colums)
             return colums[0][token] === 3 | colums[1][token] === 3 | colums[2][token] === 3;
         }
 
@@ -141,7 +142,7 @@ function GameController(
                 let counter = 0;
                 for (let i = 0; i < row.length; i++) {
                     if (row[i].getValue() === token) {
-                        colums[i].o++;
+                        colums[i][token]++;
                         counter++;
                     } 
                 }  
@@ -154,11 +155,11 @@ function GameController(
             return win;
         }   
 
-        if (horizontalWinCondition("O") | verticalWinCondition("o") | diagonalWinCondition("O")) {
+        if (horizontalWinCondition("O") | verticalWinCondition("O") | diagonalWinCondition("O")) {
             players[0].score++
             console.log("Player One has won!");
             gui.printResult("Player One has won!")
-        } else if (horizontalWinCondition("X") | verticalWinCondition("x") | diagonalWinCondition("X")) {
+        } else if (horizontalWinCondition("X") | verticalWinCondition("X") | diagonalWinCondition("X")) {
             players[1].score++
             console.log("Player Two has won!");
             gui.printResult("Player Two has won!")
