@@ -71,10 +71,18 @@ function GameController(
     const submitButton = document.querySelector("button");
 
     submitButton.addEventListener("click", () => {
-        players[0].name = document.querySelector("#playerOneName").value;
-        players[1].name = document.querySelector("#playerTwoName").value;
-        console.log(players[0].name)
-        dialog.close();
+        const playerOneInput = document.querySelector("#playerOneName");
+        const playerTwoInput = document.querySelector("#playerTwoName")
+        players[0].name = playerOneInput.value;
+        players[1].name = playerTwoInput.value;
+
+        if (playerOneInput.checkValidity() && playerTwoInput.checkValidity()) {
+            dialog.close();
+            gui.printScore(players);
+        } else {
+            alert("Please Enter your names")
+        }
+        
     })
 
     let activePlayer = players[0];
@@ -170,11 +178,11 @@ function GameController(
         if (horizontalWinCondition("O") | verticalWinCondition("O") | diagonalWinCondition("O")) {
             players[0].score++
             console.log("Player One has won!");
-            gui.printResult("Player One has won!")
+            gui.printResult(`${players[0].name} has won!`)
         } else if (horizontalWinCondition("X") | verticalWinCondition("X") | diagonalWinCondition("X")) {
             players[1].score++
             console.log("Player Two has won!");
-            gui.printResult("Player Two has won!")
+            gui.printResult(`${players[1].name} has won!`)
         } else if (checkForTie()) {
             console.log("You Tied!");
             gui.printResult("You Tied!");

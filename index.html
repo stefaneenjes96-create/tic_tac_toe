@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <dialog class="start-game">
+        <form action="" method="dialog">
+            <div class="name-inputs">
+                <input type="text" placeholder="Player 1 Name" required id="playerOneName">
+                <input type="text" placeholder="Player 2 Name" required id="playerTwoName">
+            </div>
+            <button type="button">Start Game</button>
+        </form>
+    </dialog>
+
     <div class="container">
 
         <div class="header">
@@ -15,13 +26,7 @@
 
         <div class="main">
 
-            <dialog class="start-game">
-                <form action="" method="dialog">
-                    <input type="text" placeholder="Player 1 Name" required id="playerOneName">
-                    <input type="text" placeholder="Player 2 name" required id="playerTwoName">
-                    <button type="button">Start Game</button>
-                </form>
-            </dialog>
+
 
             <div class="gameboard">
 
@@ -48,7 +53,7 @@
 
             <div class="options">
                 <button class="new-round">New Round</button>
-                <button class="reset-game">Reset Score</button>
+                <button class="reset-game">Reset Game</button>
             </div>
 
         </div>

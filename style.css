@@ -13,6 +13,54 @@ cbf3f0
 
 body {
     height: 100vh;
+    width: 100vw;
+}
+
+.start-game:open {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    max-height: none;
+    width: 100%;
+    max-width: none;
+
+    top: 0;
+    left: 0;
+
+    background-color: transparent;
+}
+
+.start-game:open form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.start-game:open .name-inputs {
+    display: flex;
+    gap: 1rem;
+}
+
+.start-game:open input {
+    height: 2.5rem;
+    font-size: 2rem;
+}
+
+.start-game:open button {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+
+    background-color: #ffbf69;
+
+    border-radius: 1rem;
+}
+
+.start-game:open button:hover {
+    background-color: #ff9f1c;
 }
 
 .container {
@@ -53,12 +101,20 @@ body {
     width: 80vw;
 }
 
-.player-one-score, 
+.player-one-score{
+    align-self: center;
+
+    font-size: 2rem;
+    font-weight: 600;
+}
+
 .player-two-score {
     align-self: center;
 
     font-size: 2rem;
     font-weight: 600;
+
+    text-align: end;
 }
 
 .play-area {
