@@ -50,6 +50,9 @@ function GameController(
     const gui = Gui();
     gui.Buttons();
 
+    const dialog = document.querySelector(".start-game");
+    dialog.showModal();
+
     const players = [
         {
             name: playerOneName,
@@ -64,6 +67,15 @@ function GameController(
             score: 0
         }
     ];
+
+    const submitButton = document.querySelector("button");
+
+    submitButton.addEventListener("click", () => {
+        players[0].name = document.querySelector("#playerOneName").value;
+        players[1].name = document.querySelector("#playerTwoName").value;
+        console.log(players[0].name)
+        dialog.close();
+    })
 
     let activePlayer = players[0];
 
@@ -259,10 +271,10 @@ function Gui() {
 
     const printScore = (players) => {
         const playerOne = document.querySelector(".player-one-score");
-        playerOne.textContent = `Score: ${players[0].score}`;
+        playerOne.textContent = `${players[0].name}'s Score: ${players[0].score}`;
 
         const playerTwo = document.querySelector(".player-two-score");
-        playerTwo.textContent = `Score: ${players[1].score}`;
+        playerTwo.textContent = `${players[1].name}'s Score: ${players[1].score}`;
     }    
 
     return {
